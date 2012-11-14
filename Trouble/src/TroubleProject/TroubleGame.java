@@ -11,7 +11,7 @@ import org.newdawn.slick.SlickException;
 public class TroubleGame extends BasicGame{
 
 	//my game images
-	
+	//shae sucks
 	
 	public TroubleGame(String title) {
 		super(title);
