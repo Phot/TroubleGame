@@ -52,8 +52,11 @@ import org.newdawn.slick.SpriteSheet;
 				if(rollJustStarted){
 					rollNum = (random.nextInt(20) + 6);
 					rollJustStarted = false;
-					time = 
+					time = System.currentTimeMillis();
 				}
+				
+					currTime = System.currentTimeMillis();
+					
 				if(currTime - time > 1000){
 					rollNum --;
 					face = random.nextInt(6);
