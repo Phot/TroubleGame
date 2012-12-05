@@ -14,9 +14,10 @@ import org.newdawn.slick.SpriteSheet;
 	public class Dice {
 
 			//rollnumb is the number of rolls the dice should do.
-		
+		//TODO add a thing that tell what the last face was so it doesn't choose it twice in a row. 
+		//sleep
 		int rollNum;
-		int face;
+		int face = 1;
 		long time = 0;
 		long currTime;
 		Image diceSheet; 
@@ -39,7 +40,7 @@ import org.newdawn.slick.SpriteSheet;
 		
 		
 		public Image getFace(){
-			return diceSpriteSheet.getSubImage(0 + (128 * face), 0);
+			return diceSpriteSheet.getSubImage(face, 0);
 		}
 		
 		public void setRoll(){
@@ -47,7 +48,7 @@ import org.newdawn.slick.SpriteSheet;
 			rollJustStarted = true;
 		}
 		
-		public void Roll(){
+		public void testRoll(){
 			if(inRoll){
 				if(rollJustStarted){
 					rollNum = (random.nextInt(20) + 6);
@@ -57,7 +58,7 @@ import org.newdawn.slick.SpriteSheet;
 				
 					currTime = System.currentTimeMillis();
 					
-				if(currTime - time > 1000){
+				if(currTime - time > 100){
 					rollNum --;
 					face = random.nextInt(6);
 					time = currTime;

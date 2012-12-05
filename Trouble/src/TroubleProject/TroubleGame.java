@@ -8,10 +8,11 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 
-public class TroubleGame extends BasicGame{
+public class TroubleGame extends BasicGame implements Constants{
 
+	Dice dice;
 	//my game images
-	//shae sucks
+	
 	
 	public TroubleGame(String title) {
 		super(title);
@@ -27,7 +28,7 @@ public class TroubleGame extends BasicGame{
 		
 		//app.setDisplayMode(750, 250, false);
 		
-		app.setDisplayMode(1000, 1000, false);
+		app.setDisplayMode(SCREEN_X, SCREEN_Y, false);
 		app.start();
 	}
 
@@ -37,7 +38,7 @@ public class TroubleGame extends BasicGame{
 		
 		//g.drawImage(back, 0, 0);
 		
-			
+		dice.drawFace(g);
 						}	
 				//readyForMove = true;
 		
@@ -45,7 +46,7 @@ public class TroubleGame extends BasicGame{
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
 		// load all fonts, graphics sounds, etc into ram
-		
+		dice = new Dice();
 		
 	//delta = fps variable (apply to moving objects)
 	}
@@ -55,7 +56,10 @@ public class TroubleGame extends BasicGame{
 		Input input = gc.getInput(); // asks Slick 2D what keys are being pressed
 		//if(readyForMove){
 		// if the arrow is being pressed
-		
+		if(input.isKeyDown(Input.KEY_UP)){
+			dice.setRoll();
+		}
+		dice.testRoll();
 		
 		// adds a unit
 		
