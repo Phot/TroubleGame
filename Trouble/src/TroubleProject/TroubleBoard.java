@@ -1,5 +1,7 @@
 package TroubleProject;
 
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
@@ -12,9 +14,9 @@ public class TroubleBoard extends BoardGame{
 	Rectangle[] greArray;
 	
 	
-	public TroubleBoard(int wAndH, int howManyGiven, String path)
+	public TroubleBoard(int wAndH, int howManyGiven/*, String path*/)
 			throws SlickException {
-		super(wAndH, howManyGiven, path);
+		super(wAndH, howManyGiven /*,path*/);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -30,13 +32,13 @@ public class TroubleBoard extends BoardGame{
 			placeTiles[i] = new Rectangle(30 + (i * 10), 20, widthOfTile, widthOfTile);
 		}
 		for(int i = 0; i < 7; i ++){
-			placeTiles[i + 7] = new Rectangle(100, 30 + (i * 10), widthOfTile, widthOfTile);
+			placeTiles[i + 7] = new Rectangle(100, 20 + (i * 10), widthOfTile, widthOfTile);
 		}
 		for(int i = 0; i < 7; i ++){
-			placeTiles[i + 14] = new Rectangle(100 - (i * 10), 100, widthOfTile, widthOfTile);
+			placeTiles[i + 14] = new Rectangle(100 - (i * 10), 90, widthOfTile, widthOfTile);
 		}
 		for(int i = 0; i < 7; i ++){
-			placeTiles[i + 21] = new Rectangle(30, 100 - (i * 10), widthOfTile, widthOfTile);
+			placeTiles[i + 21] = new Rectangle(30, 90 - (i * 10), widthOfTile, widthOfTile);
 		}
 		
 		//copying over these tiles into the color arrays
@@ -47,7 +49,7 @@ public class TroubleBoard extends BoardGame{
 			greArray[i] = placeTiles[i];
 		}
 		for(int i = 0; i < 4; i ++){
-			redArray[i + 28] = new Rectangle(30 + (i * 10), 30 + (i * 10), widthOfTile, widthOfTile);
+			redArray[i + 28] = new Rectangle(40 + (i * 10), 30 + (i * 10), widthOfTile, widthOfTile);
 	}
 		for(int i = 0; i < 4; i ++){
 			bluArray[i + 28] = new Rectangle(90 - (i * 10), 30 + (i * 10), widthOfTile, widthOfTile);
@@ -56,8 +58,23 @@ public class TroubleBoard extends BoardGame{
 			yelArray[i + 28] = new Rectangle(90 - (i * 10), 90 - (i * 10), widthOfTile, widthOfTile);
 	}
 		for(int i = 0; i < 4; i ++){
-			greArray[i + 28] = new Rectangle(30 + (i * 10), 90 - (i * 10), widthOfTile, widthOfTile);
+			greArray[i + 28] = new Rectangle(40 + (i * 10), 90 - (i * 10), widthOfTile, widthOfTile);
 	}
 	
+		
 }
+	
+	public void drawTiles(Graphics g){
+		 
+		for(int i = 0; i < redArray.length; i ++){
+			g.setColor(Color.red);
+			
+				g.draw(redArray[i]);
+			
+			
+			
+		}
+		
+	}
+	
 }

@@ -11,6 +11,11 @@ import org.newdawn.slick.SlickException;
 public class TroubleGame extends BasicGame implements Constants{
 
 	Dice dice;
+	TroubleBoard board;
+	int playerTurn = 1;
+	//Dice has rolled this turn
+	boolean diceHasRolled = false;
+	
 	//my game images
 	
 	
@@ -37,7 +42,7 @@ public class TroubleGame extends BasicGame implements Constants{
 		// draw all graphics (EVERY SINGLE ONE
 		
 		//g.drawImage(back, 0, 0);
-		
+		board.drawTiles(g);
 		dice.drawFace(g);
 						}	
 				//readyForMove = true;
@@ -46,6 +51,7 @@ public class TroubleGame extends BasicGame implements Constants{
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
 		// load all fonts, graphics sounds, etc into ram
+		board = new TroubleBoard(10, 32);
 		dice = new Dice();
 		
 	//delta = fps variable (apply to moving objects)
@@ -56,10 +62,17 @@ public class TroubleGame extends BasicGame implements Constants{
 		Input input = gc.getInput(); // asks Slick 2D what keys are being pressed
 		//if(readyForMove){
 		// if the arrow is being pressed
+		if(!diceHasRolled){
 		if(input.isKeyDown(Input.KEY_UP)){
+			diceHasRolled = true;
 			dice.setRoll();
 		}
+		}
 		dice.testRoll();
+		if(!dice.inRoll){
+			
+		}
+		
 		
 		// adds a unit
 		

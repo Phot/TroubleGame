@@ -9,10 +9,10 @@ public class BoardGame {
 Image background;
 Rectangle[] placeTiles;
 int widthOfTile, howMany;
-public BoardGame(int wAndH, int howManyGiven, String path) throws SlickException{
+public BoardGame(int wAndH, int howManyGiven /*String path */) throws SlickException{
 	widthOfTile = wAndH;
 	howMany = howManyGiven;
-	background = new Image(path);
+	//background = new Image(path);
 	initTiles();
 }
 
