@@ -13,9 +13,9 @@ public class TroubleGame extends BasicGame implements Constants{
 	Dice dice;
 	TroubleBoard board;
 	Player[] players;
-	int playerTurn = 1;
+	int playerTurn = 0;
 	//Dice has rolled this turn
-	boolean diceHasRolled = false;
+	boolean diceHasRolled = false, inPmenu = false;
 	
 	//my game images
 	
@@ -45,6 +45,15 @@ public class TroubleGame extends BasicGame implements Constants{
 		//g.drawImage(back, 0, 0);
 		board.drawTiles(g);
 		dice.drawFace(g);
+		for(int i = 0; i < 4; i ++){
+			for(int q = 0; q < 4; q ++){
+				players[i].drawPlayer(board.getBoard(q), g, players[i].getPos(q));
+			}
+		}
+		
+		if(inPmenu){
+			g.drawString("What piece do you want to move, left : 1, up : 2, right : 3, down : 4", 200, 200);
+		}
 						}	
 				//readyForMove = true;
 		
@@ -73,8 +82,22 @@ public class TroubleGame extends BasicGame implements Constants{
 		}
 		}
 		dice.testRoll();
-		if(!dice.inRoll){
-			
+		if(!dice.inRoll && diceHasRolled){
+			inPmenu = true;
+			if(input.isKeyDown(Input.KEY_LEFT)){
+				players[playerTurn].addPos(0, dice.getFaceNum());
+			}
+			if(input.isKeyDown(Input.KEY_UP)){
+				players[playerTurn].addPos(1, dice.getFaceNum());
+			}
+			if(input.isKeyDown(Input.KEY_RIGHT)){
+				players[playerTurn].addPos(2, dice.getFaceNum());
+			}
+			if(input.isKeyDown(Input.KEY_DOWN)){
+				players[playerTurn].addPos(3, dice.getFaceNum());
+			}
+				
+				
 		}
 		
 		

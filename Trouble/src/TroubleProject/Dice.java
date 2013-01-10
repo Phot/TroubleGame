@@ -42,6 +42,9 @@ import org.newdawn.slick.SpriteSheet;
 		public Image getFace(){
 			return diceSpriteSheet.getSubImage(face, 0);
 		}
+		public int getFaceNum(){
+			return face;
+		}
 		
 		public void setRoll(){
 			inRoll = true;

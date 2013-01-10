@@ -8,10 +8,8 @@ import org.newdawn.slick.geom.Rectangle;
 public class TroubleBoard extends BoardGame{
 
 	
-	Rectangle[] redArray;
-	Rectangle[] bluArray;
-	Rectangle[] yelArray;
-	Rectangle[] greArray;
+	 Rectangle[] redArray, bluArray, yelArray, greArray;
+	
 	
 	
 	public TroubleBoard(int wAndH, int howManyGiven/*, String path*/)
@@ -76,5 +74,16 @@ public class TroubleBoard extends BoardGame{
 		}
 		
 	}
+	
+public Rectangle[] getBoard(int i){
+	Rectangle[] tempRect = new Rectangle[32];
+	switch(i){
+	case 0: tempRect = redArray;
+	case 1: tempRect = bluArray;
+	case 2: tempRect = yelArray;
+	case 3: tempRect = greArray;
+	}
+	return tempRect;
+}
 	
 }
