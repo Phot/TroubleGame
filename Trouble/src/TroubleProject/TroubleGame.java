@@ -56,7 +56,7 @@ public class TroubleGame extends BasicGame implements Constants{
 		dice = new Dice();
 		players = new Player[4];
 		for(int i = 0; i < 4; i ++){
-			players[i] = new Player("imgTEST");
+			players[i] = new Player("imgTEST" + i);
 		}
 	//delta = fps variable (apply to moving objects)
 	}
