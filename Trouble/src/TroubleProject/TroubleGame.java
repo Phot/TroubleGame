@@ -84,6 +84,7 @@ public class TroubleGame extends BasicGame implements Constants{
 		dice.testRoll();
 		if(!dice.inRoll && diceHasRolled){
 			inPmenu = true;
+			while(!input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) || players[playerTurn].getError()){
 			if(input.isKeyDown(Input.KEY_LEFT)){
 				players[playerTurn].addPos(0, dice.getFaceNum());
 			}
@@ -98,6 +99,7 @@ public class TroubleGame extends BasicGame implements Constants{
 			}
 				
 				
+		}
 		}
 		
 		
