@@ -13,7 +13,7 @@ public class Player {
 	private int[] pos;
 	private boolean[] playerInStart, pieceScored;
 	
-	public Player(String imgRef, int team) throws SlickException{
+	public Player(String imgRef) throws SlickException{
 		
 		pos = new int[4];
 		pieceScored = new boolean[4];

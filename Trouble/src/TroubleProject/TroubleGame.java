@@ -12,6 +12,7 @@ public class TroubleGame extends BasicGame implements Constants{
 
 	Dice dice;
 	TroubleBoard board;
+	Player[] players;
 	int playerTurn = 1;
 	//Dice has rolled this turn
 	boolean diceHasRolled = false;
@@ -53,7 +54,10 @@ public class TroubleGame extends BasicGame implements Constants{
 		// load all fonts, graphics sounds, etc into ram
 		board = new TroubleBoard(10, 32);
 		dice = new Dice();
-		
+		players = new Player[4];
+		for(int i = 0; i < 4; i ++){
+			players[i] = new Player("imgTEST");
+		}
 	//delta = fps variable (apply to moving objects)
 	}
 	public void update(GameContainer gc, int delta) throws SlickException {
