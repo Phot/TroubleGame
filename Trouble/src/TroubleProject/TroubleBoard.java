@@ -42,9 +42,18 @@ public class TroubleBoard extends BoardGame{
 		//copying over these tiles into the color arrays
 		for(int i = 0; i < placeTiles.length; i ++){
 			redArray[i] = placeTiles[i];
-			bluArray[i] = placeTiles[i];
-			yelArray[i] = placeTiles[i];
-			greArray[i] = placeTiles[i];
+			if((i + 7) < placeTiles.length)
+			bluArray[i] = placeTiles[i + 7];
+			else
+				bluArray[i] = placeTiles[i - 21];
+			if((i + 7) < placeTiles.length)
+			yelArray[i] = placeTiles[i + 14];
+			else
+				yelArray[i] = placeTiles[i - 14];
+			if((i + 7) < placeTiles.length)
+			greArray[i] = placeTiles[i + 21];
+			else
+				greArray[i] = placeTiles[i - 7];
 		}
 		for(int i = 0; i < 4; i ++){
 			redArray[i + 28] = new Rectangle(40 + (i * 10), 30 + (i * 10), widthOfTile, widthOfTile);

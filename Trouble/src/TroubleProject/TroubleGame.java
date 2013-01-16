@@ -24,7 +24,6 @@ public class TroubleGame extends BasicGame implements Constants{
 		super(title);
 		// TODO Auto-generated constructor stub
 	}
-	//penis
 	
 	// is executed
 	public static void main(String args[]) throws SlickException {
@@ -47,7 +46,7 @@ public class TroubleGame extends BasicGame implements Constants{
 		dice.drawFace(g);
 		for(int i = 0; i < 4; i ++){
 			for(int q = 0; q < 4; q ++){
-				players[i].drawPlayer(board.getBoard(q), g, players[i].getPos(q));
+				players[i].drawPlayer(board.getBoard(q), g, q, i);
 			}
 		}
 		
@@ -84,21 +83,39 @@ public class TroubleGame extends BasicGame implements Constants{
 		dice.testRoll();
 		if(!dice.inRoll && diceHasRolled){
 			inPmenu = true;
-			while(!input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) && !input.isKeyDown(Input.KEY_DOWN) || players[playerTurn].getError()){
+			int n = -1;
+			while(!input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) 
+					&& !input.isKeyDown(Input.KEY_DOWN) || players[playerTurn].getError()){
 			if(input.isKeyDown(Input.KEY_LEFT)){
-				players[playerTurn].addPos(0, dice.getFaceNum());
+				n = 0;
 			}
 			if(input.isKeyDown(Input.KEY_UP)){
-				players[playerTurn].addPos(1, dice.getFaceNum());
+				n = 1;
 			}
 			if(input.isKeyDown(Input.KEY_RIGHT)){
-				players[playerTurn].addPos(2, dice.getFaceNum());
+				n = 2;
 			}
 			if(input.isKeyDown(Input.KEY_DOWN)){
-				players[playerTurn].addPos(3, dice.getFaceNum());
+				n = 3;
 			}
+			players[playerTurn].addPos(n, dice.getFaceNum());
 				
-				
+			for(int i = 0; i < 4; i ++){
+				for(int q = 0; q < 4; q++){
+					if(i == playerTurn && i < 4){
+						i ++;
+					}
+					else if (i == playerTurn && i >= 4){
+						break; 
+					}
+					if(players[playerTurn].getPos(n) == players[i].getPos(q)){
+						players[i].setStart(n); 
+					}
+					
+				}
+			}
+			
+			
 		}
 		}
 		
@@ -109,3 +126,5 @@ public class TroubleGame extends BasicGame implements Constants{
 		
 }
 }
+
+
