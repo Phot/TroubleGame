@@ -14,7 +14,7 @@ public class Player {
 	private boolean[] playerInStart, pieceScored;
 	private boolean isError;
 	private String errorMessage;
-	
+	private boolean won;
 	
 	public Player(String imgRef) throws SlickException{
 		
@@ -32,6 +32,53 @@ public class Player {
 		}	
 	}
 	
+	public boolean existPiecesThatCanMove(int position){
+		int cantMove = 0;
+		for(int i = 0; i < 4; i ++){
+		if(pos[i] + position > 32){
+			if(!pieceScored[i]){
+				if(pos[i] + position != pos[0] && pos[i] + position != pos[1] 
+				&& pos[i] + position != pos[2] && pos[i] + position != pos[3]){
+			if(pos[i] + position == 31){
+			}
+			else{
+				if(!playerInStart[i]){
+					}
+					else if(position == 6 && playerInStart[i]){
+					}
+					
+					else{
+						cantMove ++; 
+					}
+				}
+			}
+				else{
+					cantMove ++; 
+				}
+		}
+			else{ 
+				cantMove ++; 
+			}
+		}
+		else{
+			if(pos[i] < 28){
+				
+			}
+			else{
+				cantMove++;
+			} 
+		}
+	}
+		if(pos[0] >= 28 && pos[1] >= 28 && pos[2] >= 28 && pos[3] >= 28){
+			won = true;
+		}
+		else if(cantMove == 4){
+			isError = true;
+			errorMessage = "Player cannot move pieces since there are no pieces that can move";
+			return false;
+		}
+		return true;
+	}
 public void addPos(int piece, int position){
 	
 	if(pos[piece] + position > 32){
@@ -74,11 +121,21 @@ public void addPos(int piece, int position){
 		}
 	}
 	else{
+		if(pos[piece] < 28){
+			pos[piece] += ((pos[piece] + position) - 31); 
+		}
+		else{
 		isError = true;
 		errorMessage  = "Choose a new piece, this one cannot go that far";
+		}
 		
 	}
 }
+
+public boolean isWon(){
+	return won;
+}
+
 
 public void setPos(int piece, int position){
 	pos[piece] = position;
