@@ -12,9 +12,9 @@ public class TroubleBoard extends BoardGame{
 	
 	
 	
-	public TroubleBoard(int wAndH, int howManyGiven/*, String path*/)
+	public TroubleBoard(int wAndH, int howManyGiven, String path)
 			throws SlickException {
-		super(wAndH, howManyGiven /*,path*/);
+		super(wAndH, howManyGiven, path);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -42,18 +42,22 @@ public class TroubleBoard extends BoardGame{
 		//copying over these tiles into the color arrays
 		for(int i = 0; i < placeTiles.length; i ++){
 			redArray[i] = placeTiles[i];
+			
 			if((i + 7) < placeTiles.length)
 			bluArray[i] = placeTiles[i + 7];
-			else
+			else{
 				bluArray[i] = placeTiles[i - 21];
-			if((i + 7) < placeTiles.length)
+			}
+			if((i + 14) < placeTiles.length)
 			yelArray[i] = placeTiles[i + 14];
-			else
+			else{
 				yelArray[i] = placeTiles[i - 14];
-			if((i + 7) < placeTiles.length)
+			}
+			if((i + 21) < placeTiles.length)
 			greArray[i] = placeTiles[i + 21];
-			else
+			else{
 				greArray[i] = placeTiles[i - 7];
+			}
 		}
 		for(int i = 0; i < 4; i ++){
 			redArray[i + 28] = new Rectangle(40 + (i * 10), 30 + (i * 10), widthOfTile, widthOfTile);
@@ -83,14 +87,21 @@ public class TroubleBoard extends BoardGame{
 		}
 		
 	}
+	public void drawBackground(Graphics g){
+		g.drawImage(background, 64, 64);
+	}
 	
 public Rectangle[] getBoard(int i){
 	Rectangle[] tempRect = new Rectangle[32];
 	switch(i){
 	case 0: tempRect = redArray;
+	break;
 	case 1: tempRect = bluArray;
+	break;
 	case 2: tempRect = yelArray;
+	break;
 	case 3: tempRect = greArray;
+	break;
 	}
 	return tempRect;
 }

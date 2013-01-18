@@ -31,6 +31,21 @@ public class Player {
 		
 		}	
 	}
+public Player(Image imgRef){
+		
+		pos = new int[4];
+		pieceScored = new boolean[4];
+		playerInStart = new boolean[4];
+		playerImgs = new Image[4];
+		errorMessage = "currently no Input Errors";
+		
+		for(int i = 0; i < 4; i ++){
+		playerImgs[i] = imgRef;
+		playerInStart[i] = true;
+		pieceScored[i] = false;
+		
+		}	
+	}
 	
 	public boolean existPiecesThatCanMove(int position){
 		int cantMove = 0;
@@ -166,21 +181,29 @@ public void scored(int piece){
 
 public void drawPlayer(Rectangle[] rect, Graphics g, int playerNum, int team){
 
-	if(playerInStart[playerNum]){
+	if(!playerInStart[playerNum]){
 	g.drawImage(playerImgs[playerNum], rect[getPos(playerNum)].getX(), rect[getPos(playerNum)].getY());
 	}
 	else{
 		switch(team){
-		case 0: g.drawImage(playerImgs[playerNum], /*top right*/  playerNum * 20, 200 - (playerNum * 20));
-		case 1: g.drawImage(playerImgs[playerNum], /*top left*/ 400 + (playerNum * 20), 20 * playerNum);
-		case 2: g.drawImage(playerImgs[playerNum], /*bottom left*/ 400 - (playerNum * 20), 400 + (playerNum * 20));
-		case 3: g.drawImage(playerImgs[playerNum], /*bottom right*/ 20 - (playerNum * 20), 400 - (playerNum * 20));
+		case 0: g.drawImage(playerImgs[playerNum], /*top right*/  64 + (playerNum * 32), 0);
+		break;
+		case 1: g.drawImage(playerImgs[playerNum], /*top left*/ (512 + 64), (32 * playerNum) + 64);
+		break;
+		case 2: g.drawImage(playerImgs[playerNum], /*bottom left*/ (512 + 32) - (32 * playerNum), (512 + 64));
+		break;
+		case 3: g.drawImage(playerImgs[playerNum], /*bottom right*/ 32, (512 - 64) + (playerNum * 32) - 64);
+		break;
 		}
 	}
 	if(isError){
 	g.drawString(errorMessage, 200, 200);
 	}
 	
+}
+
+public void drawTest(Graphics g){
+	g.drawImage(playerImgs[0], 600, 600);
 }
 	
 }
