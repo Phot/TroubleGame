@@ -82,6 +82,7 @@ public class TroubleGame extends BasicGame implements Constants{
 			g.drawString(winners, 200, 200);
 			g.drawString("start new game? (y/n)", 200, 300);
 		}
+		g.flush();
 		
 	}
 				//readyForMove = true;
@@ -179,10 +180,10 @@ public class TroubleGame extends BasicGame implements Constants{
 				}
 			for(int i = 0; i < 4; i ++){
 				for(int q = 0; q < 4; q++){
-					if(i == playerTurn && i < 4){
+					if(i == playerTurn && i < 3){
 						i ++;
 					}
-					else if (i == playerTurn && i >= 4){
+					else if (i == playerTurn && i >= 3){
 						break; 
 					}
 					if(players[playerTurn].getPos(n) == players[i].getPos(q)){
@@ -239,6 +240,8 @@ public class TroubleGame extends BasicGame implements Constants{
 			lastTurnEnded = false;
 			diceHasRolled = false;
 			inPmenu = false;
+			//players[playerTurn].refreshError();
+			n = -1;
 			if(playerTurn < 3){
 				playerTurn ++;
 			}

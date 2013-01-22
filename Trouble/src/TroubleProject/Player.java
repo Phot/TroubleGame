@@ -15,6 +15,7 @@ public class Player {
 	private boolean isError;
 	private String errorMessage;
 	private boolean won;
+	private int rt = 700;
 	
 	public Player(String imgRef) throws SlickException{
 		
@@ -30,6 +31,7 @@ public class Player {
 		pieceScored[i] = false;
 		
 		}	
+		rt = 700;
 	}
 public Player(Image imgRef){
 		
@@ -113,12 +115,13 @@ public void addPos(int piece, int position){
 				isError = false;
 				}
 				else if(position == 6 && playerInStart[piece]){
-					setStart(piece);
+					started(piece);
 				}
 				
 				else{
 					isError = true;
 					errorMessage = "Choose a new piece, you didn't roll a 6 and you can't move it from start";
+					rt = 800;
 				}
 	
 	
@@ -127,12 +130,14 @@ public void addPos(int piece, int position){
 			else{
 				isError = true;
 				errorMessage = "Choose a new piece, this one landed on another you own";
+				rt = 700;
 			}
 			
 	}
 		else{ 
 			isError = true;
 			errorMessage = "Choose a new piece, this one is allready scored";
+			rt = 700;
 		}
 	}
 	else{
@@ -162,6 +167,9 @@ public boolean getError(){
 public void setError(String inputMessage){
 	errorMessage = inputMessage;
 	isError = true;
+}
+public void refreshError(){
+	isError = false;
 }
 public int getPos(int piece){
 	return pos[piece];
@@ -197,7 +205,7 @@ public void drawPlayer(Rectangle[] rect, Graphics g, int playerNum, int team){
 		}
 	}
 	if(isError){
-	g.drawString(errorMessage, 200, 700);
+	g.drawString(errorMessage, 200, rt);
 	}
 	
 }

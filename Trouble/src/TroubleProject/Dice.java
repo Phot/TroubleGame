@@ -17,7 +17,7 @@ import org.newdawn.slick.SpriteSheet;
 		//TODO add a thing that tell what the last face was so it doesn't choose it twice in a row. 
 		//sleep
 		int rollNum;
-		int face = 1;
+		int face = 0;
 		long time = 0;
 		long currTime;
 		Image diceSheet; 
@@ -43,7 +43,7 @@ import org.newdawn.slick.SpriteSheet;
 			return diceSpriteSheet.getSubImage(face, 0);
 		}
 		public int getFaceNum(){
-			return face;
+			return face + 1;
 		}
 		
 		public void setRoll(){

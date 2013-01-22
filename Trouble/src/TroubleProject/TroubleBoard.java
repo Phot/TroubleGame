@@ -12,13 +12,13 @@ public class TroubleBoard extends BoardGame{
 	
 	
 	
-	public TroubleBoard(int wAndH, int howManyGiven, String path)
-			throws SlickException {
+	public TroubleBoard(int wAndH, int howManyGiven, String path) throws SlickException {
 		super(wAndH, howManyGiven, path);
+		initTiles();
 		// TODO Auto-generated constructor stub
 	}
 
-	public void initTiles(){
+	public void initTiles(){ 
 		super.initTiles();
 	redArray = new Rectangle[howMany];
 	bluArray = new Rectangle[howMany];
