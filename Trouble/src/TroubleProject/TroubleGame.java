@@ -21,6 +21,10 @@ public class TroubleGame extends BasicGame implements Constants{
 	String winners;
 	int nextRank; 
 	boolean[] teamColor;
+	boolean lastTurnEnded;
+	boolean rolledSix;
+	boolean setChoosable;
+	int n;
 	
 	//my game images
 	
@@ -51,13 +55,13 @@ public class TroubleGame extends BasicGame implements Constants{
 		if(!endGame){
 			 //players[playerTurn].drawTest(g);
 			switch(playerTurn){
-			case 0: g.drawString("Turn: Red", 256,0);
+			case 0: g.drawString("Turn: Red (press SPACE to roll Dice)", 256,0);
 			break;
-			case 1: g.drawString("Turn: Blue", 256,0);
+			case 1: g.drawString("Turn: Blue (press SPACE to roll Dice)", 256,0);
 			break;
-			case 2: g.drawString("Turn: Yellow", 256,0);
+			case 2: g.drawString("Turn: Yellow (press SPACE to roll Dice)", 256,0);
 			break;
-			case 3: g.drawString("Turn: Green", 256,0);
+			case 3: g.drawString("Turn: Green (press SPACE to roll Dice)", 256,0);
 			break;
 			}
 		
@@ -70,7 +74,7 @@ public class TroubleGame extends BasicGame implements Constants{
 		}
 		
 		if(inPmenu){
-			g.drawString("What piece do you want to move, left : 1, up : 2, right : 3, down : 4", 200, 200);
+			g.drawString("What piece do you want to move," + "\n" + "left : piece 1, up : piece 2, right : piece 3, down : piece 4", 600, 0);
 		}
 	}	
 		else{
@@ -87,8 +91,8 @@ public class TroubleGame extends BasicGame implements Constants{
 		// load all fonts, graphics sounds, etc into ram
 		Image piecesImg = new Image("/resources/Pieces.png");
 		SpriteSheet piecesSheet = new SpriteSheet(piecesImg, 32, 56);
-		playerTurn = 0;
-		diceHasRolled = false; inPmenu = false; endGame = false;
+		playerTurn = 0;  n = -1;
+		diceHasRolled = false; inPmenu = false; endGame = false; lastTurnEnded = true; rolledSix = false; setChoosable = false;
 		winners = "The rankings are: ";
 		nextRank = 1;
 		board = new TroubleBoard(10, 32, "/resources/board.png");
@@ -109,7 +113,7 @@ public class TroubleGame extends BasicGame implements Constants{
 		Input input = gc.getInput(); // asks Slick 2D what keys are being pressed
 		//if(readyForMove){
 		// if the arrow is being pressed
-		System.out.println(playerTurn);
+		
 		if(endGame){
 			if(input.isKeyDown(Input.KEY_Y)){
 				//WARNING MAY GET ERRORS
@@ -123,39 +127,54 @@ public class TroubleGame extends BasicGame implements Constants{
 			
 		}
 		if(!diceHasRolled){
-		if(input.isKeyDown(Input.KEY_UP)){
+		if(input.isKeyDown(Input.KEY_SPACE)){
 			diceHasRolled = true;
 			dice.setRoll();
+			lastTurnEnded = false;
+			
 		}
+		}
+		
+		if(input.isKeyDown(Input.KEY_LEFT) && setChoosable){
+			System.out.println("sadf");
+			n = 0;
+		}
+		if(input.isKeyDown(Input.KEY_UP)  && setChoosable){
+			n = 1;
+		}
+		if(input.isKeyDown(Input.KEY_RIGHT)  && setChoosable){
+			n = 2;
+		}
+		if(input.isKeyDown(Input.KEY_DOWN)  && setChoosable){
+			n = 3;
 		}
 		dice.testRoll();
 		if(!dice.inRoll && diceHasRolled){
-			boolean rolledSix = false;
+			
 			inPmenu = true;
-			int n = -1;
+			
 			
 			if(players[playerTurn].existPiecesThatCanMove(dice.getFaceNum())){
-			while(!input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) 
+			if(!input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) 
 					&& !input.isKeyDown(Input.KEY_DOWN) || players[playerTurn].getError() || rolledSix){
+				setChoosable = true;
 			
-			if(input.isKeyDown(Input.KEY_LEFT)){
-				n = 0;
-			}
-			if(input.isKeyDown(Input.KEY_UP)){
-				n = 1;
-			}
-			if(input.isKeyDown(Input.KEY_RIGHT)){
-				n = 2;
-			}
-			if(input.isKeyDown(Input.KEY_DOWN)){
-				n = 3;
-			}
-			players[playerTurn].addPos(n, dice.getFaceNum());
+			
+			
+			
+			
+			if(n != -1){
+				players[playerTurn].addPos(n, dice.getFaceNum());
+				System.out.println("Hello");
 				if(dice.getFaceNum() == 6){
 					rolledSix = true;
 				}
 				else{
 					rolledSix = false;
+					lastTurnEnded = true;
+					setChoosable = false;
+					
+					
 				}
 			for(int i = 0; i < 4; i ++){
 				for(int q = 0; q < 4; q++){
@@ -169,11 +188,12 @@ public class TroubleGame extends BasicGame implements Constants{
 						players[i].setStart(n); 
 					}
 					
+					}
+			
+					}
+			
 				}
 			}
-			
-			
-		}
 			
 		}
 			else if(players[playerTurn].isWon()){
@@ -214,12 +234,15 @@ public class TroubleGame extends BasicGame implements Constants{
 					endGame = true;
 				}
 			}
+			if(lastTurnEnded){
+			diceHasRolled = false;
 			inPmenu = false;
 			if(playerTurn < 3){
 				playerTurn ++;
 			}
 			else{
 				playerTurn = 0;
+			}
 			}
 		}
 		
