@@ -55,6 +55,7 @@ public class TroubleGame extends BasicGame implements Constants{
 		if(!endGame){
 			 //players[playerTurn].drawTest(g);
 			switch(playerTurn){
+			
 			case 0: g.drawString("Turn: Red (press SPACE to roll Dice)", 256,0);
 			break;
 			case 1: g.drawString("Turn: Blue (press SPACE to roll Dice)", 256,0);
@@ -150,7 +151,7 @@ public class TroubleGame extends BasicGame implements Constants{
 		}
 		dice.testRoll();
 		if(!dice.inRoll && diceHasRolled){
-			
+			System.out.println("Hello");
 			inPmenu = true;
 			
 			
@@ -165,7 +166,7 @@ public class TroubleGame extends BasicGame implements Constants{
 			
 			if(n != -1){
 				players[playerTurn].addPos(n, dice.getFaceNum());
-				System.out.println("Hello");
+				
 				if(dice.getFaceNum() == 6){
 					rolledSix = true;
 				}
@@ -235,6 +236,7 @@ public class TroubleGame extends BasicGame implements Constants{
 				}
 			}
 			if(lastTurnEnded){
+			lastTurnEnded = false;
 			diceHasRolled = false;
 			inPmenu = false;
 			if(playerTurn < 3){

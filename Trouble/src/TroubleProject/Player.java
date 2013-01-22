@@ -96,7 +96,7 @@ public Player(Image imgRef){
 	}
 public void addPos(int piece, int position){
 	
-	if(pos[piece] + position > 32){
+	if(pos[piece] + position < 32){
 		if(!pieceScored[piece]){
 			if(pos[piece] + position != pos[0] && pos[piece] + position != pos[1] 
 			&& pos[piece] + position != pos[2] && pos[piece] + position != pos[3]){
@@ -197,7 +197,7 @@ public void drawPlayer(Rectangle[] rect, Graphics g, int playerNum, int team){
 		}
 	}
 	if(isError){
-	g.drawString(errorMessage, 200, 200);
+	g.drawString(errorMessage, 200, 700);
 	}
 	
 }
