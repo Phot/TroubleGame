@@ -51,7 +51,7 @@ import org.newdawn.slick.SpriteSheet;
 			rollJustStarted = true;
 		}
 		
-		public void testRoll(){
+		public void goRoll(){
 			if(inRoll){
 				if(rollJustStarted){
 					rollNum = (random.nextInt(20) + 6);

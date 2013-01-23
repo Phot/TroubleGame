@@ -137,6 +137,9 @@ public class TroubleGame extends BasicGame implements Constants{
 		}
 		}
 		
+		 dice.goRoll();
+		
+
 		if(input.isKeyDown(Input.KEY_LEFT) && setChoosable){
 			System.out.println("sadf");
 			n = 0;
@@ -150,9 +153,8 @@ public class TroubleGame extends BasicGame implements Constants{
 		if(input.isKeyDown(Input.KEY_DOWN)  && setChoosable){
 			n = 3;
 		}
-		dice.testRoll();
 		if(!dice.inRoll && diceHasRolled){
-			System.out.println("Hello");
+			
 			inPmenu = true;
 			
 			
@@ -162,39 +164,45 @@ public class TroubleGame extends BasicGame implements Constants{
 				setChoosable = true;
 			
 			
-			
-			
+				System.out.println(n);
+
 			
 			if(n != -1){
 				players[playerTurn].addPos(n, dice.getFaceNum());
+				for(int i = 0; i < 4; i ++){
+					for(int q = 0; q < 4; q++){
+						if(i == playerTurn && i < 3){
+							i ++;
+						}
+						else if (i == playerTurn && i >= 3){
+							break; 
+						}
+						if(players[playerTurn].getPos(n) == (players[i].getPos(q) + (i * 7))){
+							players[i].setStart(n); 
+						}
+						
+						}
 				
+				}
 				if(dice.getFaceNum() == 6){
 					rolledSix = true;
+					diceHasRolled = false;
+					n = -1;
+					System.out.println("pirra");
 				}
+				
 				else{
 					rolledSix = false;
 					lastTurnEnded = true;
 					setChoosable = false;
+					n = -1;
 					
 					
 				}
-			for(int i = 0; i < 4; i ++){
-				for(int q = 0; q < 4; q++){
-					if(i == playerTurn && i < 3){
-						i ++;
-					}
-					else if (i == playerTurn && i >= 3){
-						break; 
-					}
-					if(players[playerTurn].getPos(n) == players[i].getPos(q)){
-						players[i].setStart(n); 
-					}
-					
-					}
 			
-					}
 			
 				}
+			
 			}
 			
 		}
@@ -235,6 +243,9 @@ public class TroubleGame extends BasicGame implements Constants{
 					}
 					endGame = true;
 				}
+			}
+			else{
+				lastTurnEnded = true;
 			}
 			if(lastTurnEnded){
 			lastTurnEnded = false;

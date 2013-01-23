@@ -52,7 +52,7 @@ public Player(Image imgRef){
 	public boolean existPiecesThatCanMove(int position){
 		int cantMove = 0;
 		for(int i = 0; i < 4; i ++){
-		if(pos[i] + position > 32){
+		if(pos[i] + position < 32){
 			if(!pieceScored[i]){
 				if(pos[i] + position != pos[0] && pos[i] + position != pos[1] 
 				&& pos[i] + position != pos[2] && pos[i] + position != pos[3]){
@@ -205,7 +205,7 @@ public void drawPlayer(Rectangle[] rect, Graphics g, int playerNum, int team){
 		}
 	}
 	if(isError){
-	g.drawString(errorMessage, 200, rt);
+	g.drawString(errorMessage, 200, (rt + (team * 20)));
 	}
 	
 }
