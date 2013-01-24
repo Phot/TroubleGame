@@ -24,7 +24,7 @@ import org.newdawn.slick.SpriteSheet;
 		
 		boolean inRoll;
 		boolean rollJustStarted;
-		int diceBoardX = 500, diceBoardY = 500;
+		int diceBoardX = 256, diceBoardY = 256;
 		Random random = new Random();
 		SpriteSheet diceSpriteSheet; 
 		

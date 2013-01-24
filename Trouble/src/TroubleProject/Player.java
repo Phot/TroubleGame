@@ -190,7 +190,7 @@ public void scored(int piece){
 public void drawPlayer(Rectangle[] rect, Graphics g, int playerNum, int team){
 
 	if(!playerInStart[playerNum]){
-	g.drawImage(playerImgs[playerNum], rect[getPos(playerNum)].getX(), rect[getPos(playerNum)].getY());
+	g.drawImage(playerImgs[playerNum], rect[getPos(playerNum)].getX(), rect[getPos(playerNum)].getY() - 24);
 	}
 	else{
 		switch(team){

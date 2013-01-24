@@ -82,6 +82,7 @@ public class TroubleGame extends BasicGame implements Constants{
 			g.drawString(winners, 200, 200);
 			g.drawString("start new game? (y/n)", 200, 300);
 		}
+		board.drawTiles(g);
 		g.flush();
 		
 	}

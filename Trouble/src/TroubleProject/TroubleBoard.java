@@ -27,16 +27,16 @@ public class TroubleBoard extends BoardGame{
 		
 	//initializing the square sided tiles on the trouble board in the place tile array
 		for(int i = 0; i < 7; i ++){
-			placeTiles[i] = new Rectangle(30 + (i * 10), 20, widthOfTile, widthOfTile);
+			placeTiles[i] = new Rectangle(80 + (i * 64), 80, widthOfTile, widthOfTile);
 		}
 		for(int i = 0; i < 7; i ++){
-			placeTiles[i + 7] = new Rectangle(100, 20 + (i * 10), widthOfTile, widthOfTile);
+			placeTiles[i + 7] = new Rectangle(528, 80 + (i * 64), widthOfTile, widthOfTile);
 		}
 		for(int i = 0; i < 7; i ++){
-			placeTiles[i + 14] = new Rectangle(100 - (i * 10), 90, widthOfTile, widthOfTile);
+			placeTiles[i + 14] = new Rectangle(528 - (i * 64), 528, widthOfTile, widthOfTile);
 		}
 		for(int i = 0; i < 7; i ++){
-			placeTiles[i + 21] = new Rectangle(30, 90 - (i * 10), widthOfTile, widthOfTile);
+			placeTiles[i + 21] = new Rectangle(80, 528 - (i * 64), widthOfTile, widthOfTile);
 		}
 		
 		//copying over these tiles into the color arrays
@@ -60,16 +60,16 @@ public class TroubleBoard extends BoardGame{
 			}
 		}
 		for(int i = 0; i < 4; i ++){
-			redArray[i + 28] = new Rectangle(40 + (i * 10), 30 + (i * 10), widthOfTile, widthOfTile);
+			redArray[i + 28] = new Rectangle(128 + (i * 32), 128 + (i * 32), widthOfTile, widthOfTile);
 	}
 		for(int i = 0; i < 4; i ++){
-			bluArray[i + 28] = new Rectangle(90 - (i * 10), 30 + (i * 10), widthOfTile, widthOfTile);
+			bluArray[i + 28] = new Rectangle(480 - (i * 32), 128 + (i * 32), widthOfTile, widthOfTile);
 	}
 		for(int i = 0; i < 4; i ++){
-			yelArray[i + 28] = new Rectangle(90 - (i * 10), 90 - (i * 10), widthOfTile, widthOfTile);
+			yelArray[i + 28] = new Rectangle(480 - (i * 32), 480 - (i * 32), widthOfTile, widthOfTile);
 	}
 		for(int i = 0; i < 4; i ++){
-			greArray[i + 28] = new Rectangle(40 + (i * 10), 90 - (i * 10), widthOfTile, widthOfTile);
+			greArray[i + 28] = new Rectangle(128 + (i * 32), 480 - (i * 32), widthOfTile, widthOfTile);
 	}
 	
 		
