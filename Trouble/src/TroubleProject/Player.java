@@ -96,7 +96,7 @@ public Player(Image imgRef){
 		}
 		return true;
 	}
-public void addPos(int piece, int position){
+public boolean addPos(int piece, int position){
 	
 	if(pos[piece] + position < 32){
 		if(!pieceScored[piece]){
@@ -122,6 +122,7 @@ public void addPos(int piece, int position){
 					isError = true;
 					errorMessage = "Choose a new piece, you didn't roll a 6 and you can't move it from start";
 					rt = 800;
+					return false;
 				}
 	
 	
@@ -131,6 +132,7 @@ public void addPos(int piece, int position){
 				isError = true;
 				errorMessage = "Choose a new piece, this one landed on another you own";
 				rt = 700;
+				return false;
 			}
 			
 	}
@@ -138,6 +140,7 @@ public void addPos(int piece, int position){
 			isError = true;
 			errorMessage = "Choose a new piece, this one is allready scored";
 			rt = 700;
+			return false;
 		}
 	}
 	else{
@@ -147,9 +150,11 @@ public void addPos(int piece, int position){
 		else{
 		isError = true;
 		errorMessage  = "Choose a new piece, this one cannot go that far";
+		return false;
 		}
 		
 	}
+	return true;
 }
 
 public boolean isWon(){
@@ -191,6 +196,7 @@ public void drawPlayer(Rectangle[] rect, Graphics g, int playerNum, int team){
 
 	if(!playerInStart[playerNum]){
 	g.drawImage(playerImgs[playerNum], rect[getPos(playerNum)].getX(), rect[getPos(playerNum)].getY() - 24);
+	System.out.println(playerNum + " " + rect[getPos(playerNum)].getX() + " " + (rect[getPos(playerNum)].getY() - 24));
 	}
 	else{
 		switch(team){

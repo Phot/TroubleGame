@@ -144,16 +144,21 @@ public class TroubleGame extends BasicGame implements Constants{
 		if(input.isKeyDown(Input.KEY_LEFT) && setChoosable){
 			System.out.println("sadf");
 			n = 0;
+			setChoosable = false;
 		}
 		if(input.isKeyDown(Input.KEY_UP)  && setChoosable){
 			n = 1;
+			setChoosable = false;
 		}
 		if(input.isKeyDown(Input.KEY_RIGHT)  && setChoosable){
 			n = 2;
+			setChoosable = false;
 		}
 		if(input.isKeyDown(Input.KEY_DOWN)  && setChoosable){
 			n = 3;
+			setChoosable = false;
 		}
+		
 		if(!dice.inRoll && diceHasRolled){
 			
 			inPmenu = true;
@@ -161,7 +166,8 @@ public class TroubleGame extends BasicGame implements Constants{
 			
 			if(players[playerTurn].existPiecesThatCanMove(dice.getFaceNum())){
 			if(!input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) 
-					&& !input.isKeyDown(Input.KEY_DOWN) || players[playerTurn].getError() || rolledSix){
+									&& !input.isKeyDown(Input.KEY_DOWN) || players[playerTurn].getError() || !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) 
+									&& !input.isKeyDown(Input.KEY_DOWN) &&  rolledSix){
 				setChoosable = true;
 			
 			
@@ -169,7 +175,7 @@ public class TroubleGame extends BasicGame implements Constants{
 
 			
 			if(n != -1){
-				players[playerTurn].addPos(n, dice.getFaceNum());
+				if(players[playerTurn].addPos(n, dice.getFaceNum())){
 				for(int i = 0; i < 4; i ++){
 					for(int q = 0; q < 4; q++){
 						if(i == playerTurn && i < 3){
@@ -203,6 +209,7 @@ public class TroubleGame extends BasicGame implements Constants{
 			
 			
 				}
+			}
 			
 			}
 			
