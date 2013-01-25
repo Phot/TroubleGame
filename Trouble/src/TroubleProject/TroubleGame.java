@@ -15,6 +15,7 @@ public class TroubleGame extends BasicGame implements Constants{
 	Dice dice;
 	TroubleBoard board;
 	Player[] players;
+	Button[] buttons;
 	int playerTurn;
 	//Dice has rolled this turn
 	boolean diceHasRolled, inPmenu, endGame;
@@ -71,6 +72,7 @@ public class TroubleGame extends BasicGame implements Constants{
 			for(int q = 0; q < 4; q ++){
 				//System.out.println("drawingShit");
 				players[i].drawPlayer(board.getBoard(i), g, q, i);
+				buttons[i].drawButton(g);
 			}
 		}
 		
@@ -101,12 +103,16 @@ public class TroubleGame extends BasicGame implements Constants{
 		board = new TroubleBoard(10, 32, "/resources/board.png");
 		dice = new Dice();
 		players = new Player[4];
+		buttons = new Button[4];
 		for(int i = 0; i < 4; i ++){
 			players[i] = new Player(piecesSheet.getSubImage((i), 0));
 		}
 		teamColor = new boolean[4];
 		for(int i = 0; i < 4; i ++){
 			teamColor[i] = false;
+		}
+		for(int i = 0; i < 4; i ++){
+			buttons[i] = new Button("" + i, 600 + (i * 32), 300, 32, 32);
 		}
 	//delta = fps variable (apply to moving objects)
 	}
@@ -140,7 +146,7 @@ public class TroubleGame extends BasicGame implements Constants{
 		
 		 dice.goRoll();
 		
-
+/*
 		if(input.isKeyDown(Input.KEY_LEFT) && setChoosable){
 			System.out.println("sadf");
 			n = 0;
@@ -158,17 +164,35 @@ public class TroubleGame extends BasicGame implements Constants{
 			n = 3;
 			setChoosable = false;
 		}
+		*/
 		
 		if(!dice.inRoll && diceHasRolled){
 			
 			inPmenu = true;
 			
 			
+			
+			
+			
 			if(players[playerTurn].existPiecesThatCanMove(dice.getFaceNum())){
-			if(!input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) 
-									&& !input.isKeyDown(Input.KEY_DOWN) || players[playerTurn].getError() || !input.isKeyDown(Input.KEY_LEFT) && !input.isKeyDown(Input.KEY_UP) && !input.isKeyDown(Input.KEY_RIGHT) 
-									&& !input.isKeyDown(Input.KEY_DOWN) &&  rolledSix){
+			if(!buttons[0].clicked(input) || !buttons[1].clicked(input) && !buttons[2].clicked(input) &&
+					!buttons[3].clicked(input) || players[playerTurn].getError() || !buttons[0].clicked(input) || !buttons[1].clicked(input) && !buttons[2].clicked(input) &&
+					!buttons[3].clicked(input) && rolledSix){
 				setChoosable = true;
+				for(int i = 0; i < 4; i ++){
+					buttons[i].setClickable(true);
+				}
+				
+				if(buttons[0].clicked(input)){
+					n = 0;
+				}if(buttons[1].clicked(input)){
+					n = 1;
+				}if(buttons[2].clicked(input)){
+					n = 2;
+				}if(buttons[3].clicked(input)){
+					n = 3;
+				}
+				
 			
 			
 				System.out.println(n);
@@ -186,6 +210,7 @@ public class TroubleGame extends BasicGame implements Constants{
 						}
 						if(players[playerTurn].getPos(n) == (players[i].getPos(q) + (i * 7))){
 							players[i].setStart(n); 
+							System.out.println("WFDKLSHG:ALHGFh");
 						}
 						
 						}
