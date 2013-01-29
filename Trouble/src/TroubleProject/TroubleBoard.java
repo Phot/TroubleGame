@@ -29,29 +29,29 @@ public class TroubleBoard extends BoardGame{
 	//copying over these tiles into the color arrays 
 		for(int i = 0; i < 7; i ++){
 			redArray[i] = new Rectangle(80 + (i * 64), 80, widthOfTile, widthOfTile);
-			bluArray[i + 7] = new Rectangle(80 + (i * 64), 80, widthOfTile, widthOfTile);
+			bluArray[i + 21] = new Rectangle(80 + (i * 64), 80, widthOfTile, widthOfTile);
 			yelArray[i + 14] = new Rectangle(80 + (i * 64), 80, widthOfTile, widthOfTile);
-			greArray[i + 21] = new Rectangle(80 + (i * 64), 80, widthOfTile, widthOfTile);
+			greArray[i + 7] = new Rectangle(80 + (i * 64), 80, widthOfTile, widthOfTile);
 		}
 		for(int i = 0; i < 7; i ++){
 			redArray[i + 7] = new Rectangle(528, 80 + (i * 64), widthOfTile, widthOfTile);
-			bluArray[i + 14] = new Rectangle(528, 80 + (i * 64), widthOfTile, widthOfTile);
+			bluArray[i] = new Rectangle(528, 80 + (i * 64), widthOfTile, widthOfTile);
 			yelArray[i + 21] = new Rectangle(528, 80 + (i * 64), widthOfTile, widthOfTile);
-			greArray[i] = new Rectangle(528, 80 + (i * 64), widthOfTile, widthOfTile);
+			greArray[i + 14] = new Rectangle(528, 80 + (i * 64), widthOfTile, widthOfTile);
 
 		}
 		for(int i = 0; i < 7; i ++){
 			redArray[i + 14] = new Rectangle(528 - (i * 64), 528, widthOfTile, widthOfTile);
-			bluArray[i + 21] = new Rectangle(528 - (i * 64), 528, widthOfTile, widthOfTile);
+			bluArray[i + 7] = new Rectangle(528 - (i * 64), 528, widthOfTile, widthOfTile);
 			yelArray[i] = new Rectangle(528 - (i * 64), 528, widthOfTile, widthOfTile);
-			greArray[i + 7] = new Rectangle(528 - (i * 64), 528, widthOfTile, widthOfTile);
+			greArray[i + 21] = new Rectangle(528 - (i * 64), 528, widthOfTile, widthOfTile);
 
 		}
 		for(int i = 0; i < 7; i ++){
 			redArray[i + 21] = new Rectangle(80, 528 - (i * 64), widthOfTile, widthOfTile);
-			bluArray[i] = new Rectangle(80, 528 - (i * 64), widthOfTile, widthOfTile);
+			bluArray[i + 14] = new Rectangle(80, 528 - (i * 64), widthOfTile, widthOfTile);
 			yelArray[i + 7] = new Rectangle(80, 528 - (i * 64), widthOfTile, widthOfTile);
-			greArray[i + 14] = new Rectangle(80, 528 - (i * 64), widthOfTile, widthOfTile);
+			greArray[i] = new Rectangle(80, 528 - (i * 64), widthOfTile, widthOfTile);
 
 		}
 		
@@ -97,11 +97,11 @@ public class TroubleBoard extends BoardGame{
 	public void drawTiles(Graphics g){
 		 
 		for(int i = 0; i < redArray.length; i ++){
-			g.setColor(Color.red);
+			g.setColor(Color.gray);
 			
-				g.draw(bluArray[i]);
+				g.draw(greArray[i]);
 				//System.out.println(i);
-				g.drawString(""+i, bluArray[i].getX(), bluArray[i].getY());
+				g.drawString(""+i, greArray[i].getX(), greArray[i].getY());
 			
 			
 			

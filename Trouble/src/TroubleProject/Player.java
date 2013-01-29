@@ -1,11 +1,12 @@
 package TroubleProject;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
-public class Player {
+public class Player implements Constants {
 
 
 	
@@ -115,7 +116,16 @@ public boolean addPos(int piece, int position){
 				isError = false;
 				}
 				else if(position == 6 && playerInStart[piece]){
+					if(pos[piece] + position != pos[0] && pos[piece] + position != pos[1] 
+							&& pos[piece] + position != pos[2] && pos[piece] + position != pos[3]){
 					started(piece);
+					}
+					else{
+						isError = true;
+						errorMessage = "Choose a new piece, this one landed on another you own";
+						rt = 700;
+						return false;
+					}
 				}
 				
 				else{
@@ -194,6 +204,7 @@ public void scored(int piece){
 
 public void drawPlayer(Rectangle[] rect, int playersTurn, Graphics g, int playerNum, int team, boolean inDahMenu){
 int drawPosX = 0, drawPosY = 0;
+Color colorOfError = new Color(DEFAULT_COLOR);
 	if(!playerInStart[playerNum]){
 	g.drawImage(playerImgs[playerNum], rect[getPos(playerNum)].getX(), rect[getPos(playerNum)].getY() - 24);
 	if(inDahMenu && playersTurn == team)
@@ -202,13 +213,13 @@ int drawPosX = 0, drawPosY = 0;
 	}
 	else{
 		switch(team){
-		case 0: /*top right*/  drawPosX = 64 + (playerNum * 32); drawPosY = 0;
+		case 0: /*top right*/  drawPosX = 64 + (playerNum * 32); drawPosY = 0; 
 		break;
-		case 1: /*top left*/ drawPosX = (512 + 64); drawPosY = (32 * playerNum) + 64;
+		case 1: /*top left*/ drawPosX = (512 + 64); drawPosY = (32 * playerNum) + 64; 
 		break;
-		case 2: /*bottom left*/ drawPosX = (512 + 32) - (32 * playerNum); drawPosY = (512 + 64);
+		case 2: /*bottom left*/ drawPosX = (512 + 32) - (32 * playerNum); drawPosY = (512 + 64); 
 		break;
-		case 3: /*bottom right*/ drawPosX = 32; drawPosY = (512 - 64) + (playerNum * 32) - 64;
+		case 3: /*bottom right*/ drawPosX = 32; drawPosY = (512 - 64) + (playerNum * 32) - 64; 
 		break;
 		}
 		g.drawImage(playerImgs[playerNum], drawPosX, drawPosY);
@@ -216,7 +227,19 @@ int drawPosX = 0, drawPosY = 0;
 		g.drawString("" + playerNum, drawPosX + 16, drawPosY);
 	}
 	if(isError){
+		switch(team){
+		case 0: colorOfError = Color.red;
+		break;
+		case 1: colorOfError = Color.blue;
+		break;
+		case 2: colorOfError = Color.yellow;
+		break;
+		case 3: colorOfError = Color.green;
+		break;
+		}
+	g.setColor(colorOfError);
 	g.drawString(errorMessage, 200, (rt + (team * 20)));
+	g.setColor(DEFAULT_COLOR);
 	}
 	
 }

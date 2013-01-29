@@ -2,6 +2,7 @@ package TroubleProject;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -57,13 +58,13 @@ public class TroubleGame extends BasicGame implements Constants{
 			 //players[playerTurn].drawTest(g);
 			switch(playerTurn){
 			
-			case 0: g.drawString("Turn: Red (press SPACE to roll Dice)", 256,0);
+			case 0: g.setColor(Color.red); g.drawString("Turn: Red (press SPACE to roll Dice)", 256,0); 
 			break;
-			case 1: g.drawString("Turn: Blue (press SPACE to roll Dice)", 256,0);
+			case 1: g.setColor(Color.blue); g.drawString("Turn: Blue (press SPACE to roll Dice)", 256,0);
 			break;
-			case 2: g.drawString("Turn: Yellow (press SPACE to roll Dice)", 256,0);
+			case 2: g.setColor(Color.yellow); g.drawString("Turn: Yellow (press SPACE to roll Dice)", 256,0);
 			break;
-			case 3: g.drawString("Turn: Green (press SPACE to roll Dice)", 256,0);
+			case 3: g.setColor(Color.green); g.drawString("Turn: Green (press SPACE to roll Dice)", 256,0);
 			break;
 			}
 		

@@ -28,7 +28,7 @@ public class Button {
 		if(clickable()){
 		g.setColor(Color.red);
 		g.draw(buttonRect);
-		g.setColor(Color.white);
+		g.setColor(Color.gray);
 		g.drawString(textDisplayedOnButton, x, y);
 		if(selected){
 			g.drawRect(x, y, width, hieght);
