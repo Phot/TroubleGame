@@ -71,7 +71,7 @@ public class TroubleGame extends BasicGame implements Constants{
 		for(int i = 0; i < 4; i ++){
 			for(int q = 0; q < 4; q ++){
 				//System.out.println("drawingShit");
-				players[i].drawPlayer(board.getBoard(i), g, q, i);
+				players[i].drawPlayer(board.getBoard(i), playerTurn, g, q, i, inPmenu);
 				buttons[i].drawButton(g);
 			}
 		}
@@ -281,6 +281,9 @@ public class TroubleGame extends BasicGame implements Constants{
 				lastTurnEnded = true;
 			}
 			if(lastTurnEnded){
+				for(int i = 0; i < 4; i ++){
+					buttons[i].setClickable(false);
+				}
 			lastTurnEnded = false;
 			diceHasRolled = false;
 			inPmenu = false;
