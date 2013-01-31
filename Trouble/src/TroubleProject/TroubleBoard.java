@@ -8,8 +8,8 @@ import org.newdawn.slick.geom.Rectangle;
 public class TroubleBoard extends BoardGame{
 
 	
-	 Rectangle[] redArray, bluArray, yelArray, greArray;
-	
+	 Rectangle[] redArray, bluArray, yelArray, greArray, realArray;
+	 int[] redCompare, bluCompare, yelCompare, greCompare;
 	
 	
 	public TroubleBoard(int wAndH, int howManyGiven, String path) throws SlickException {
@@ -21,37 +21,59 @@ public class TroubleBoard extends BoardGame{
 	public void initTiles(){ 
 		super.initTiles();
 	redArray = new Rectangle[howMany];
+	redCompare = new int[32];
 	bluArray = new Rectangle[howMany];
+	bluCompare = new int[32];
 	yelArray = new Rectangle[howMany];
+	yelCompare = new int[32];
 	greArray = new Rectangle[howMany];
+	greCompare = new int[32];
+	//what we base who moves on what, IE if blu moves to space 3, it will be translated to a global 3. 
+	realArray = new Rectangle[28];
 		
 	//initializing the square sided tiles on the trouble board in the place tile array
 	//copying over these tiles into the color arrays 
 		for(int i = 0; i < 7; i ++){
 			redArray[i] = new Rectangle(80 + (i * 64), 80, widthOfTile, widthOfTile);
+			redCompare[i] = i;
 			bluArray[i + 21] = new Rectangle(80 + (i * 64), 80, widthOfTile, widthOfTile);
+			bluCompare[i + 21] = i;
 			yelArray[i + 14] = new Rectangle(80 + (i * 64), 80, widthOfTile, widthOfTile);
+			yelCompare[i + 14] = i;
 			greArray[i + 7] = new Rectangle(80 + (i * 64), 80, widthOfTile, widthOfTile);
+			yelCompare[i + 7] = i;
 		}
 		for(int i = 0; i < 7; i ++){
 			redArray[i + 7] = new Rectangle(528, 80 + (i * 64), widthOfTile, widthOfTile);
+			redCompare[i + 7] = i;
 			bluArray[i] = new Rectangle(528, 80 + (i * 64), widthOfTile, widthOfTile);
+			bluCompare[i] = i;
 			yelArray[i + 21] = new Rectangle(528, 80 + (i * 64), widthOfTile, widthOfTile);
+			yelCompare[i + 21] = i;
 			greArray[i + 14] = new Rectangle(528, 80 + (i * 64), widthOfTile, widthOfTile);
+			greCompare[i + 14] = i;
 
 		}
 		for(int i = 0; i < 7; i ++){
 			redArray[i + 14] = new Rectangle(528 - (i * 64), 528, widthOfTile, widthOfTile);
+			redCompare[i + 14] = i;
 			bluArray[i + 7] = new Rectangle(528 - (i * 64), 528, widthOfTile, widthOfTile);
+			bluCompare[i + 7] = i;
 			yelArray[i] = new Rectangle(528 - (i * 64), 528, widthOfTile, widthOfTile);
+			yelCompare[i] = i;
 			greArray[i + 21] = new Rectangle(528 - (i * 64), 528, widthOfTile, widthOfTile);
+			greCompare[i + 21] = i;
 
 		}
 		for(int i = 0; i < 7; i ++){
 			redArray[i + 21] = new Rectangle(80, 528 - (i * 64), widthOfTile, widthOfTile);
+			redCompare[i + 21] = i;
 			bluArray[i + 14] = new Rectangle(80, 528 - (i * 64), widthOfTile, widthOfTile);
+			bluCompare[i + 14] = i;
 			yelArray[i + 7] = new Rectangle(80, 528 - (i * 64), widthOfTile, widthOfTile);
+			yelCompare[i + 7] = i;
 			greArray[i] = new Rectangle(80, 528 - (i * 64), widthOfTile, widthOfTile);
+			greCompare[i] = i;
 
 		}
 		
@@ -94,14 +116,28 @@ public class TroubleBoard extends BoardGame{
 		
 }
 	
+	public int getRelPos(int n, int team){
+		int returnedInt = 0;
+		switch(team){
+		case 0: returnedInt = redCompare[n];
+			break;
+		case 1: returnedInt = bluCompare[n];
+		break;
+		case 2: returnedInt = greCompare[n];
+		break;
+		case 3: returnedInt = redCompare[n];
+		break;
+		}
+		return returnedInt;
+	}
 	public void drawTiles(Graphics g){
 		 
 		for(int i = 0; i < redArray.length; i ++){
 			g.setColor(Color.gray);
 			
-				g.draw(greArray[i]);
+				g.draw(redArray[i]);
 				//System.out.println(i);
-				g.drawString(""+i, greArray[i].getX(), greArray[i].getY());
+				g.drawString(""+i, redArray[i].getX(), redArray[i].getY());
 			
 			
 			

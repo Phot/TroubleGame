@@ -17,10 +17,11 @@ public class Player implements Constants {
 	private String errorMessage;
 	private boolean won;
 	private int rt = 700;
-	
-	public Player(String imgRef) throws SlickException{
-		
+	private boolean pieceInStart;
+	public Player(String imgRef, int offSet) throws SlickException{
+		pieceInStart = false;
 		pos = new int[4];
+		
 		pieceScored = new boolean[4];
 		playerInStart = new boolean[4];
 		playerImgs = new Image[4];
@@ -32,6 +33,7 @@ public class Player implements Constants {
 		pieceScored[i] = false;
 		
 		}	
+		
 		rt = 700;
 	}
 public Player(Image imgRef){
@@ -112,12 +114,14 @@ public boolean addPos(int piece, int position){
 		}
 		else{
 			if(!playerInStart[piece]){
+				if(pos[piece] == 0){
+					pieceInStart = false;
+				}
 				pos[piece] += position;
 				isError = false;
 				}
 				else if(position == 6 && playerInStart[piece]){
-					if(pos[piece] + position != pos[0] && pos[piece] + position != pos[1] 
-							&& pos[piece] + position != pos[2] && pos[piece] + position != pos[3]){
+					if(!pieceInStart){
 					started(piece);
 					}
 					else{
@@ -155,7 +159,7 @@ public boolean addPos(int piece, int position){
 	}
 	else{
 		if(pos[piece] < 28){
-			pos[piece] += ((pos[piece] + position) - 31); 
+			pos[piece] += 31 - (((pos[piece] + position) - 31)); 
 		}
 		else{
 		isError = true;
@@ -193,6 +197,7 @@ public int getPos(int piece){
 public void started(int piece){
 	setPos(piece, 0);
 	playerInStart[piece] = false;
+	pieceInStart = true;
 }
 public void setStart(int piece){
 	playerInStart[piece] = true;
@@ -208,7 +213,9 @@ Color colorOfError = new Color(DEFAULT_COLOR);
 	if(!playerInStart[playerNum]){
 	g.drawImage(playerImgs[playerNum], rect[getPos(playerNum)].getX(), rect[getPos(playerNum)].getY() - 24);
 	if(inDahMenu && playersTurn == team)
+		g.setColor(Color.white);
 	g.drawString(""+ playerNum, rect[getPos(playerNum)].getX() + 16, rect[getPos(playerNum)].getY() - 24);
+		g.setColor(DEFAULT_COLOR);
 	//System.out.println(playerNum + " " + rect[getPos(playerNum)].getX() + " " + (rect[getPos(playerNum)].getY() - 24));
 	}
 	else{
@@ -224,7 +231,9 @@ Color colorOfError = new Color(DEFAULT_COLOR);
 		}
 		g.drawImage(playerImgs[playerNum], drawPosX, drawPosY);
 		if(inDahMenu && playersTurn == team)
+			g.setColor(Color.white);
 		g.drawString("" + playerNum, drawPosX + 16, drawPosY);
+			g.setColor(DEFAULT_COLOR);
 	}
 	if(isError){
 		switch(team){
@@ -235,7 +244,6 @@ Color colorOfError = new Color(DEFAULT_COLOR);
 		case 2: colorOfError = Color.yellow;
 		break;
 		case 3: colorOfError = Color.green;
-		break;
 		}
 	g.setColor(colorOfError);
 	g.drawString(errorMessage, 200, (rt + (team * 20)));

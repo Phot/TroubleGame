@@ -209,12 +209,28 @@ public class TroubleGame extends BasicGame implements Constants{
 						else if (i == playerTurn && i >= 3){
 							break; 
 						}
-						if(players[playerTurn].getPos(n) == (players[i].getPos(q) + (i * 7))){
-							players[i].setStart(n); 
+						
+						if(board.getRelPos(players[playerTurn].getPos(n), playerTurn) == board.getRelPos(players[i].getPos(q), i)){
+							players[i].setStart(q); 
+							System.out.println(playerTurn + " " + players[playerTurn].getPos(q));
+							System.out.println(i + " " + players[i].getPos(n) + "LDSF");
 							System.out.println("WFDKLSHG:ALHGFh");
 						}
 						
+					
+						/*
+						else if (playerTurn == 0){
+							if(players[playerTurn].getPos(n) == (players[i].getPos(q) + (28 - (i * 7)))){
+								players[i].setStart(n); 
+							}
 						}
+						else if(i == 0){
+							if(players[playerTurn].getPos(n) + (28 - (playerTurn * 7)) == players[i].getPos(q)){
+								players[i].setStart(n);
+								
+							}
+						} */
+					}
 				
 				}
 				if(dice.getFaceNum() == 6){
