@@ -45,35 +45,35 @@ public class TroubleBoard extends BoardGame{
 		}
 		for(int i = 0; i < 7; i ++){
 			redArray[i + 7] = new Rectangle(528, 80 + (i * 64), widthOfTile, widthOfTile);
-			redCompare[i + 7] = i;
+			redCompare[i + 7] = i + 7;
 			bluArray[i] = new Rectangle(528, 80 + (i * 64), widthOfTile, widthOfTile);
-			bluCompare[i] = i;
+			bluCompare[i] = i + 7;
 			yelArray[i + 21] = new Rectangle(528, 80 + (i * 64), widthOfTile, widthOfTile);
-			yelCompare[i + 21] = i;
+			yelCompare[i + 21] = i + 7;
 			greArray[i + 14] = new Rectangle(528, 80 + (i * 64), widthOfTile, widthOfTile);
-			greCompare[i + 14] = i;
+			greCompare[i + 14] = i + 7;
 
 		}
 		for(int i = 0; i < 7; i ++){
 			redArray[i + 14] = new Rectangle(528 - (i * 64), 528, widthOfTile, widthOfTile);
-			redCompare[i + 14] = i;
+			redCompare[i + 14] = i + 14;
 			bluArray[i + 7] = new Rectangle(528 - (i * 64), 528, widthOfTile, widthOfTile);
-			bluCompare[i + 7] = i;
+			bluCompare[i + 7] = i + 14;
 			yelArray[i] = new Rectangle(528 - (i * 64), 528, widthOfTile, widthOfTile);
-			yelCompare[i] = i;
+			yelCompare[i] = i + 14;
 			greArray[i + 21] = new Rectangle(528 - (i * 64), 528, widthOfTile, widthOfTile);
-			greCompare[i + 21] = i;
+			greCompare[i + 21] = i + 14;
 
 		}
 		for(int i = 0; i < 7; i ++){
 			redArray[i + 21] = new Rectangle(80, 528 - (i * 64), widthOfTile, widthOfTile);
-			redCompare[i + 21] = i;
+			redCompare[i + 21] = i + 21;
 			bluArray[i + 14] = new Rectangle(80, 528 - (i * 64), widthOfTile, widthOfTile);
-			bluCompare[i + 14] = i;
+			bluCompare[i + 14] = i + 21;
 			yelArray[i + 7] = new Rectangle(80, 528 - (i * 64), widthOfTile, widthOfTile);
-			yelCompare[i + 7] = i;
+			yelCompare[i + 7] = i + 21;
 			greArray[i] = new Rectangle(80, 528 - (i * 64), widthOfTile, widthOfTile);
-			greCompare[i] = i;
+			greCompare[i] = i + 21;
 
 		}
 		
@@ -102,15 +102,19 @@ public class TroubleBoard extends BoardGame{
 		*/
 		for(int i = 0; i < 4; i ++){
 			redArray[i + 28] = new Rectangle(128 + (i * 32), 128 + (i * 32), widthOfTile, widthOfTile);
+			redCompare[i + 28] = 100;
 	}
 		for(int i = 0; i < 4; i ++){
 			bluArray[i + 28] = new Rectangle(480 - (i * 32), 128 + (i * 32), widthOfTile, widthOfTile);
+			bluCompare[i + 28] = 200;
 	}
 		for(int i = 0; i < 4; i ++){
 			yelArray[i + 28] = new Rectangle(480 - (i * 32), 480 - (i * 32), widthOfTile, widthOfTile);
+			yelCompare[i + 28] = 300;
 	}
 		for(int i = 0; i < 4; i ++){
 			greArray[i + 28] = new Rectangle(128 + (i * 32), 480 - (i * 32), widthOfTile, widthOfTile);
+			greCompare[i + 28] = 400;
 	}
 	
 		
@@ -123,9 +127,9 @@ public class TroubleBoard extends BoardGame{
 			break;
 		case 1: returnedInt = bluCompare[n];
 		break;
-		case 2: returnedInt = greCompare[n];
+		case 2: returnedInt = yelCompare[n];
 		break;
-		case 3: returnedInt = redCompare[n];
+		case 3: returnedInt = greCompare[n];
 		break;
 		}
 		return returnedInt;
@@ -135,9 +139,9 @@ public class TroubleBoard extends BoardGame{
 		for(int i = 0; i < redArray.length; i ++){
 			g.setColor(Color.gray);
 			
-				g.draw(redArray[i]);
+				g.draw(greArray[i]);
 				//System.out.println(i);
-				g.drawString(""+i, redArray[i].getX(), redArray[i].getY());
+				g.drawString(""+i, greArray[i].getX(), greArray[i].getY());
 			
 			
 			

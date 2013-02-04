@@ -211,6 +211,8 @@ public class TroubleGame extends BasicGame implements Constants{
 						}
 						
 						if(board.getRelPos(players[playerTurn].getPos(n), playerTurn) == board.getRelPos(players[i].getPos(q), i)){
+							System.out.println(board.getRelPos(players[i].getPos(q), i));
+							System.out.println(board.getRelPos(players[playerTurn].getPos(n), playerTurn));
 							players[i].setStart(q); 
 							System.out.println(playerTurn + " " + players[playerTurn].getPos(q));
 							System.out.println(i + " " + players[i].getPos(n) + "LDSF");
